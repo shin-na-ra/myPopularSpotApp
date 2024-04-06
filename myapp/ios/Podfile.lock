@@ -1,0 +1,41 @@
+PODS:
+  - Flutter (1.0.0)
+  - geocoding_ios (1.0.5):
+    - Flutter
+  - geolocator_apple (1.2.0):
+    - Flutter
+  - image_picker_ios (0.0.1):
+    - Flutter
+  - sqflite (0.0.3):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  geocoding_ios:
+    :path: ".symlinks/plugins/geocoding_ios/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/darwin"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  geocoding_ios: d7460f56e80e118d57678efe5c2cdc888739ff18
+  geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450
+  image_picker_ios: b545a5f16c0fa88e3ecbbce3ed4de45567a8ec18
+  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.15.2
