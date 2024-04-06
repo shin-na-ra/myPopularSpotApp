@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/route_manager.dart';
 import 'package:myapp/view/insert_page.dart';
+import 'package:myapp/view/map_page.dart';
 import 'package:myapp/view/update_page.dart';
 import 'package:myapp/vm/database_handler.dart';
 
@@ -79,51 +80,57 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-                  child: Card(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.memory(
-                              snapshot.data![index].image,
-                              width: 100,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        const ShowMapPage(),
+                        arguments: [
+                          snapshot.data![index].latitude,
+                          snapshot.data![index].longitude,
+                          snapshot.data![index].sname,
+                        ]
+                      );
+                    },
+                    child: Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.memory(
+                                snapshot.data![index].image,
+                                width: 100,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                child: Text(
-                                  '[${snapshot.data![index].sname}]',
-                                  style: const TextStyle(
-                                    fontSize: 20,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                  child: Text(
+                                    '[${snapshot.data![index].sname}]',
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text(
-                                snapshot.data![index].sphone,
-                                style: const TextStyle(
-                                  fontSize: 15,
+                                Text(
+                                  snapshot.data![index].sphone,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  ),
                                 ),
-                              ),
-                              // Text(
-                              //   '상호명 : ${snapshot.data![index].sname}'
-                              // ),
-                              // Text(
-                              //   '전화번호 : ${snapshot.data![index].sphone}'
-                              // ),
-                            ],
-                          ),
-                        )
-                      ],
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      
                     ),
-                    
                   ),
                 );
               },
