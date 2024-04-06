@@ -54,169 +54,174 @@ class _InsertPageState extends State<InsertPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('맛집 추가'),
-        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-        foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: ElevatedButton(
-                onPressed: () => getImageFromGallery(ImageSource.gallery),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-                  foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
-                  minimumSize: const Size(100, 40)
-                ), 
-                child: const Text('갤러리'),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width/2,
-              height: 200,
-              color: Colors.grey[200],
-              child: Center(
-                child: imageFile == null
-                ? const Text('이미지 없음')
-                : Image.file(File(imageFile!.path)),
-              ),
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('맛집 추가'),
+          backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+          foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-              const SizedBox(
-                height: 300,
-                child: Column(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  child: ElevatedButton(
+                    onPressed: () => getImageFromGallery(ImageSource.gallery),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                      foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
+                      minimumSize: const Size(100, 40)
+                    ), 
+                    child: const Text('갤러리'),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width/2,
+                  height: 200,
+                  color: Colors.grey[200],
+                  child: Center(
+                    child: imageFile == null
+                    ? const Text('이미지 없음')
+                    : Image.file(File(imageFile!.path)),
+                  ),
+                ),
+            
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 20, 20, 15),
-                      child: Text(
-                        '위치 : ',
-                        style: TextStyle(
-                          fontSize: 18
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
-                      child: Text(
-                        '이름 : ',
-                        style: TextStyle(
-                          fontSize: 18
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
-                      child: Text(
-                        '전화 : ',
-                        style: TextStyle(
-                          fontSize: 18
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
-                      child: Text(
-                        '평가 : ',
-                        style: TextStyle(
-                          fontSize: 18
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    child: Row(
+                  const SizedBox(
+                    height: 300,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          child: SizedBox(
-                            width: 120,
-                            child: TextField(
-                              controller: latiController,
-                              decoration: const InputDecoration(
-                                labelText: '위도'
-                              ),
-                              keyboardType: TextInputType.number,
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 15),
+                          child: Text(
+                            '위치 : ',
+                            style: TextStyle(
+                              fontSize: 18
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                          child: SizedBox(
-                            width: 120,
-                            child: TextField(
-                              controller: longController,
-                              decoration: const InputDecoration(
-                                labelText: '경도'
-                              ),
-                              keyboardType: TextInputType.number,
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                          child: Text(
+                            '이름 : ',
+                            style: TextStyle(
+                              fontSize: 18
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                          child: Text(
+                            '전화 : ',
+                            style: TextStyle(
+                              fontSize: 18
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                          child: Text(
+                            '평가 : ',
+                            style: TextStyle(
+                              fontSize: 18
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 260,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: nameController,
-                        keyboardType: TextInputType.text,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 260,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.text,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 120,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: SizedBox(
-                        width: 260,
-                        child: TextField(
-                          controller: textController,
-                          keyboardType: TextInputType.text,
-                          maxLength: 50,
-                          maxLines: 8,
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              child: SizedBox(
+                                width: 120,
+                                child: TextField(
+                                  controller: latiController,
+                                  decoration: const InputDecoration(
+                                    labelText: '위도'
+                                  ),
+                                  keyboardType: TextInputType.number,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                              child: SizedBox(
+                                width: 120,
+                                child: TextField(
+                                  controller: longController,
+                                  decoration: const InputDecoration(
+                                    labelText: '경도'
+                                  ),
+                                  keyboardType: TextInputType.number,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                      SizedBox(
+                        width: 260,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          child: TextField(
+                            controller: nameController,
+                            keyboardType: TextInputType.text,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 260,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          child: TextField(
+                            controller: phoneController,
+                            keyboardType: const TextInputType.numberWithOptions(signed: true),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 120,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          child: SizedBox(
+                            width: 260,
+                            child: TextField(
+                              controller: textController,
+                              keyboardType: TextInputType.text,
+                              maxLength: 50,
+                              maxLines: 8,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                  ],
+                ),
+                ElevatedButton(
+                    onPressed: () => insertAction(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                      foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
+                      minimumSize: const Size(100, 40)
+                    ), 
+                    child: const Text('입력'),
+                  ),
               ],
             ),
-            ElevatedButton(
-                onPressed: () => insertAction(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-                  foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
-                  minimumSize: const Size(100, 40)
-                ), 
-                child: const Text('입력'),
-              ),
-          ],
+          ),
         ),
       ),
     );
