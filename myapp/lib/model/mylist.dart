@@ -5,8 +5,8 @@ class Mylist{
   String sname;
   String sphone;
   Uint8List image;
-  int longitude;
-  int latitude;
+  String longitude;
+  String latitude;
   String text;
 
   Mylist ({
