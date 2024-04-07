@@ -2,10 +2,12 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/model/mylist.dart';
 import 'package:myapp/vm/database_handler.dart';
+import 'package:latlong2/latlong.dart' as latlng;
 
 class InsertPage extends StatefulWidget {
   const InsertPage({super.key});
@@ -34,6 +36,12 @@ class _InsertPageState extends State<InsertPage> {
   late String text;
 
 
+  late double latData;
+  late double longData;
+  late Position currentPosition;
+  late bool canRun;
+
+
   @override
   void initState() {
     super.initState();
@@ -50,7 +58,55 @@ class _InsertPageState extends State<InsertPage> {
     name = '';
     phone = '';
     text = '';
+
+    latData =0.0;
+    longData = 0.0;
+    
+    canRun = false;
+    checkLocationPermission();
   }
+
+  checkLocationPermission() async { //위치허용 modal
+    LocationPermission permission = await Geolocator.checkPermission();
+    if(permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    } 
+    
+    if(permission == LocationPermission.deniedForever) {
+      return;
+    }
+
+    if(permission == LocationPermission.whileInUse || 
+      permission == LocationPermission.always) {
+        getCurrentLocation();
+    }
+  }
+
+   //현재위치 받기 함수
+  getCurrentLocation() async {
+    Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best).then((position){
+        currentPosition = position;
+        canRun = true;  //화면 구성한다. 
+        latData = currentPosition.latitude;
+        longData = currentPosition.longitude;
+
+        latiController.text = latData.toString();
+        longController.text = longData.toString();
+
+        print(latData);
+        setState(() {});
+
+      }).catchError((e){
+        print(e);
+      });
+  }
+
+  // setLatLong(latData, longData) async {
+  //   latiController.text = await latData;
+  //   longController.text = await longData;
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -168,6 +224,7 @@ class _InsertPageState extends State<InsertPage> {
                                 ),
                               ),
                             ),
+
                           ],
                         ),
                       ),
