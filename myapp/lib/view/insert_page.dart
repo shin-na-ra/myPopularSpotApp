@@ -59,14 +59,15 @@ class _InsertPageState extends State<InsertPage> {
     phone = '';
     text = '';
 
-    latData =0.0;
-    longData = 0.0;
+    latData = 0;
+    longData = 0;
     
     canRun = false;
     checkLocationPermission();
   }
 
-  checkLocationPermission() async { //위치허용 modal
+  //위치허용 modal
+  checkLocationPermission() async { 
     LocationPermission permission = await Geolocator.checkPermission();
     if(permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -84,17 +85,21 @@ class _InsertPageState extends State<InsertPage> {
 
    //현재위치 받기 함수
   getCurrentLocation() async {
-    Geolocator.getCurrentPosition(
+    print('들어감');
+    
+    await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best).then((position){
+        
         currentPosition = position;
-        canRun = true;  //화면 구성한다. 
+        print(currentPosition);
         latData = currentPosition.latitude;
         longData = currentPosition.longitude;
+
+        print(latData);
 
         latiController.text = latData.toString();
         longController.text = longData.toString();
 
-        print(latData);
         setState(() {});
 
       }).catchError((e){
@@ -102,11 +107,6 @@ class _InsertPageState extends State<InsertPage> {
       });
   }
 
-  // setLatLong(latData, longData) async {
-  //   latiController.text = await latData;
-  //   longController.text = await longData;
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {

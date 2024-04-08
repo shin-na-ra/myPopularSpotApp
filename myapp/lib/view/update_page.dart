@@ -74,7 +74,7 @@ class _UpdatePageState extends State<UpdatePage> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                   child: ElevatedButton(
                     onPressed: () => getImageFromGallery(ImageSource.gallery),
                     style: ElevatedButton.styleFrom(

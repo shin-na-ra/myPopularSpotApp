@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/route_manager.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:worldapp/starlist.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
@@ -82,7 +81,7 @@ class _AddPageState extends State<AddPage> {
     long = 0;
 
     canRun = false;
-    //getLocationData();
+    getLocationData();
     
     score = 0;
 
